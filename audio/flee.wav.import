@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/flee.wav-a41d265da27cf1b0e161585dc25f712a.sample"
+
+[deps]
+
+source_file="res://audio/flee.wav"
+dest_files=[ "res://.import/flee.wav-a41d265da27cf1b0e161585dc25f712a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

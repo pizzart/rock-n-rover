@@ -1,0 +1,242 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/menubg.gd" type="Script" id=1]
+[ext_resource path="res://graphics/logos/mars.png" type="Texture" id=2]
+[ext_resource path="res://scripts/menu.gd" type="Script" id=3]
+[ext_resource path="res://graphics/logos/roverlogo.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color( 0.101961, 0.0823529, 0.129412, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.866667, 0.215686, 0.396078, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color( 0.137255, 0.109804, 0.176471, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.737255, 0.737255, 0.737255, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 2
+anti_aliasing = false
+
+[node name="Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="M" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 75
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="VBoxContainer" parent="M"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 69.0
+margin_bottom = 81.0
+size_flags_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="TextureRect" parent="M/V"]
+margin_right = 64.0
+margin_bottom = 16.0
+texture = ExtResource( 4 )
+
+[node name="V" type="VBoxContainer" parent="M/V"]
+margin_left = 6.0
+margin_top = 20.0
+margin_right = 58.0
+margin_bottom = 76.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_constants/separation = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="Button" parent="M/V/V"]
+margin_top = 11.0
+margin_right = 52.0
+margin_bottom = 21.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_pressed = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+action_mode = 0
+text = "Play"
+
+[node name="Settings" type="Button" parent="M/V/V"]
+margin_top = 23.0
+margin_right = 52.0
+margin_bottom = 33.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_pressed = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+action_mode = 0
+text = "Settings"
+
+[node name="Exit" type="Button" parent="M/V/V"]
+margin_top = 35.0
+margin_right = 52.0
+margin_bottom = 45.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_pressed = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+action_mode = 0
+text = "Back to Earth"
+
+[node name="Settings" type="VBoxContainer" parent="M"]
+visible = false
+margin_left = 9.0
+margin_top = 5.0
+margin_right = 65.0
+margin_bottom = 81.0
+size_flags_horizontal = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="VBoxContainer" parent="M/Settings"]
+margin_right = 56.0
+margin_bottom = 76.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+custom_constants/separation = 2
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Flash" type="Button" parent="M/Settings/V"]
+modulate = Color( 0, 1, 0, 1 )
+margin_top = 15.0
+margin_right = 56.0
+margin_bottom = 25.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_pressed = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+action_mode = 0
+text = "Flashing Lights"
+
+[node name="Music" type="Button" parent="M/Settings/V"]
+modulate = Color( 0, 1, 0, 1 )
+margin_top = 27.0
+margin_right = 56.0
+margin_bottom = 37.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_pressed = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+action_mode = 0
+text = "Music"
+
+[node name="Sounds" type="Button" parent="M/Settings/V"]
+modulate = Color( 0, 1, 0, 1 )
+margin_top = 39.0
+margin_right = 56.0
+margin_bottom = 49.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_pressed = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+action_mode = 0
+text = "Sounds"
+
+[node name="Back" type="Button" parent="M/Settings/V"]
+margin_top = 51.0
+margin_right = 56.0
+margin_bottom = 61.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.705882, 0.705882, 0.705882, 1 )
+custom_colors/font_color_pressed = Color( 0.423529, 0.423529, 0.423529, 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+action_mode = 0
+text = "Back"
+
+[node name="Mars" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.944444
+anchor_bottom = 0.916667
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BG" type="ParallaxBackground" parent="."]
+
+[node name="Layer" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2( 0.1, 0.1 )
+motion_mirroring = Vector2( 144, 96 )
+script = ExtResource( 1 )
+
+[connection signal="pressed" from="M/V/V/Play" to="." method="_on_played"]
+[connection signal="pressed" from="M/V/V/Settings" to="." method="_on_settings"]
+[connection signal="focus_entered" from="M/V/V/Exit" to="." method="_on_exit_focused"]
+[connection signal="focus_exited" from="M/V/V/Exit" to="." method="_on_exit_unfocused"]
+[connection signal="pressed" from="M/V/V/Exit" to="." method="_on_exited"]
+[connection signal="pressed" from="M/Settings/V/Flash" to="." method="_on_flash"]
+[connection signal="pressed" from="M/Settings/V/Music" to="." method="_on_mute_music"]
+[connection signal="pressed" from="M/Settings/V/Sounds" to="." method="_on_mute_sounds"]
+[connection signal="pressed" from="M/Settings/V/Back" to="." method="_on_back"]

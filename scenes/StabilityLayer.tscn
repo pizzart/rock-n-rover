@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 2.0
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 2.0
+draw_center = false
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+
+[node name="StabilityLayer" type="CanvasLayer"]
+
+[node name="M" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="P" type="PanelContainer" parent="M"]
+margin_left = 87.0
+margin_top = 83.0
+margin_right = 142.0
+margin_bottom = 94.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="VBoxContainer" parent="M/P"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 55.0
+margin_bottom = 11.0
+size_flags_vertical = 0
+custom_constants/separation = 0
+
+[node name="Text" type="Label" parent="M/P/V"]
+margin_right = 53.0
+margin_bottom = 8.0
+text = "STABILITY: 100%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bar" type="ProgressBar" parent="M/P/V"]
+modulate = Color( 0, 1, 0.501961, 1 )
+margin_top = 8.0
+margin_right = 53.0
+margin_bottom = 10.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+step = 1.0
+value = 100.0
+percent_visible = false
+
+[node name="Left" type="PanelContainer" parent="M"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 59.0
+margin_bottom = 11.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="M/Left"]
+margin_left = 2.0
+margin_right = 56.0
+margin_bottom = 8.0
+text = "6 ENEMIES LEFT"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

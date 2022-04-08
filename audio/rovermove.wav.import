@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rovermove.wav-0bd8b327172a5521a5cae0de1c371c2d.sample"
+
+[deps]
+
+source_file="res://audio/rovermove.wav"
+dest_files=[ "res://.import/rovermove.wav-0bd8b327172a5521a5cae0de1c371c2d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

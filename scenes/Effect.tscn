@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/vignette.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float amount = 1.0;
+uniform bool enabled = true;
+
+void fragment() {
+	if (enabled) {
+		float a = fract(sin(dot(UV, vec2(12.9898, 78.233) * TIME)) * 438.5453) * 1.9;
+		COLOR.a = pow(a, (1.01 - amount) * 12.0) * 0.001;
+	}
+	else {
+		COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/amount = 1.0
+shader_param/enabled = true
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform vec2 screen_size = vec2(144, 96);
+uniform float vignette_opacity = 0.1;
+
+void fragment() {
+	vec2 uv = UV;
+	float vignette = uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
+	vignette = clamp(pow((screen_size.x / 4.0) * vignette, vignette_opacity), 0.0, 1.0);
+	COLOR -= vignette;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/screen_size = Vector2( 144, 96 )
+shader_param/vignette_opacity = 0.1
+
+[node name="Effect" type="CanvasLayer"]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Vignette" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0.784314, 1, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

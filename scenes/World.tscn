@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/world.gd" type="Script" id=1]
+[ext_resource path="res://scenes/BG.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/RoverOverworld.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/StabilityLayer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://graphics/overworld/labplace.png" type="Texture" id=5]
+[ext_resource path="res://graphics/overworld/arrow.png" type="Texture" id=6]
+[ext_resource path="res://audio/overworld.ogg" type="AudioStream" id=7]
+[ext_resource path="res://audio/noise.wav" type="AudioStream" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.5659, 151.131 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 96.6489, 127.739 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="BG" parent="." instance=ExtResource( 2 )]
+
+[node name="Tint" type="CanvasModulate" parent="BG"]
+visible = false
+color = Color( 0.619608, 0.552941, 0.8, 1 )
+
+[node name="Tint" type="CanvasModulate" parent="."]
+visible = false
+color = Color( 0.619608, 0.552941, 0.8, 1 )
+
+[node name="StabilityLayer" parent="." instance=ExtResource( 4 )]
+
+[node name="RoverOverworld" parent="." instance=ExtResource( 3 )]
+
+[node name="Camera" type="Camera2D" parent="RoverOverworld"]
+current = true
+smoothing_enabled = true
+
+[node name="Map" type="StaticBody2D" parent="."]
+
+[node name="Polygon" type="Polygon2D" parent="Map"]
+color = Color( 0.556863, 0.321569, 0.321569, 1 )
+invert_enable = true
+invert_border = 766.1
+polygon = PoolVector2Array( -46.8533, -47.0732, -53.3752, -39.7212, -86.4566, -43.3204, -111.77, -14.8996, -97.2046, 24.5619, -61.1363, 18.7469, -49.7818, 29.9536, -55.5336, 43.3369, -117.004, 84.5245, -118.701, 113.374, -102.059, 135.037, -49.1214, 138.83, 13.6783, 103.956, 179.659, 133.525, 572.754, 120.668, 530.307, 73.7921, 571.037, 37.5883, 604.412, 6.47559, 650.233, -16.1518, 664.845, -71.848, 657.021, -123.632, 619.488, -141.396, 594.796, -132.117, 593.664, -104.399, 625.343, -50.0929, 602.715, -15.5862, 553.501, 9.86969, 533.702, 4.77853, 433.669, -68.0165, 385.588, -82.368, 383.683, -142.689, 360.825, -197.296, 345.586, -253.172, 356.956, -287.369, 210.122, -312.54, 137.005, -293.961, 140.001, -256.803, 116.628, -183.686, 95.4114, -126.18, 103.666, -95.7022, 124.538, -77.1314, 208.324, -24.8652, 276.647, -54.232, 345.569, -57.2286, 424.923, -4.28818, 417.569, 51.149, 378.726, 78.8385, 338.364, 103.769, 181.566, 104.838, 162.02, 95.9735, 158.759, 70.271, 182.81, 51.1491, 180.028, 9.79488, 150, -9.94495, 144.909, -40.492, 126.607, -68.3202, 86.6431, -85.1811, 60.4961, -66.6908, 51.4356, -66.8509, 41.3178, -70.5864, 2.356, -113.465, -44.1031, -113.419, -59.8694, -88.5752, -44.9847, -57.4013 )
+
+[node name="Collision" type="CollisionPolygon2D" parent="Map"]
+build_mode = 1
+
+[node name="ZoomOutTrig" type="Area2D" parent="."]
+position = Vector2( 371.443, -105.838 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoomOutTrig"]
+shape = SubResource( 1 )
+
+[node name="LabEnterTrig" type="Area2D" parent="."]
+position = Vector2( 240, -176 )
+
+[node name="LabPlace" type="Sprite" parent="LabEnterTrig"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LabEnterTrig"]
+shape = SubResource( 2 )
+
+[node name="FinalBossTrig" type="Area2D" parent="."]
+position = Vector2( -7, -700 )
+
+[node name="LabPlace" type="Sprite" parent="FinalBossTrig"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinalBossTrig"]
+shape = SubResource( 2 )
+
+[node name="Arrow" type="Sprite" parent="."]
+visible = false
+z_index = 2
+texture = ExtResource( 6 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
+bus = "music"
+
+[node name="Noise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -80.0
+autoplay = true
+bus = "sound"
+
+[connection signal="body_entered" from="ZoomOutTrig" to="." method="_on_trig1"]
+[connection signal="body_exited" from="ZoomOutTrig" to="." method="_on_trig1_exited"]
+[connection signal="body_entered" from="LabEnterTrig" to="." method="_on_trig2"]
+[connection signal="body_entered" from="FinalBossTrig" to="." method="_on_trig3"]

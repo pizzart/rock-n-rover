@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/ActionButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://graphics/ui/attack.png" type="Texture" id=2]
+[ext_resource path="res://scripts/hud.gd" type="Script" id=3]
+[ext_resource path="res://graphics/ui/defend.png" type="Texture" id=4]
+[ext_resource path="res://graphics/ui/flee.png" type="Texture" id=5]
+[ext_resource path="res://graphics/ui/heal.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rect_position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 32, -0.25, 0, 0.2775, -1.35347, 20, -0.1825, 3.7018, 0.25, 0, 10, -0.4425, -0.187687, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 1.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 1.5 )
+}
+
+[node name="HUDLayer" type="CanvasLayer"]
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="V" type="VBoxContainer" parent="HUD"]
+anchor_bottom = 1.0
+margin_right = 8.0
+custom_constants/separation = 1
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack" parent="HUD/V" instance=ExtResource( 1 )]
+margin_top = 30.0
+margin_bottom = 38.0
+mouse_filter = 0
+button_mask = 1
+action_icon = ExtResource( 2 )
+
+[node name="Defend" parent="HUD/V" instance=ExtResource( 1 )]
+margin_top = 39.0
+margin_bottom = 47.0
+mouse_filter = 0
+button_mask = 1
+action_icon = ExtResource( 4 )
+
+[node name="Heal" parent="HUD/V" instance=ExtResource( 1 )]
+margin_top = 48.0
+margin_bottom = 56.0
+mouse_filter = 0
+button_mask = 1
+action_icon = ExtResource( 6 )
+
+[node name="Flee" parent="HUD/V" instance=ExtResource( 1 )]
+margin_top = 57.0
+margin_bottom = 65.0
+mouse_filter = 0
+button_mask = 1
+action_icon = ExtResource( 5 )
+
+[node name="HP" type="Label" parent="HUD"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.388889
+anchor_top = 0.333333
+anchor_right = 0.520833
+anchor_bottom = 0.416667
+margin_bottom = 3.8147e-05
+text = "+3 HP"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ATK" type="Label" parent="HUD/HP"]
+anchor_top = 1.0
+anchor_right = 1.21053
+anchor_bottom = 2.0
+text = "+1 ATK"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Anim" type="AnimationPlayer" parent="HUD/HP"]
+anims/move = SubResource( 1 )
+
+[connection signal="pressed" from="HUD/V/Attack" to="HUD" method="_on_attacked"]
+[connection signal="pressed" from="HUD/V/Defend" to="HUD" method="_on_defended"]
+[connection signal="pressed" from="HUD/V/Heal" to="HUD" method="_on_healed"]
+[connection signal="pressed" from="HUD/V/Flee" to="HUD" method="_on_fled"]
